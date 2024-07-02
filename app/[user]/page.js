@@ -25,11 +25,11 @@ export default function User() {
   useEffect(() => {
     const getSessionDet = async () => {
       const { data, error } = await supabase.auth.getSession();
-      console.log(data);
+      // console.log(data);
       if (data?.session === null) {
         setFlag(true);
       } else {
-        console.log("Error in fetching Session details");
+        setFlag(false);
       }
     };
     getSessionDet();

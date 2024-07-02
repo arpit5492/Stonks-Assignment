@@ -1,21 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-function ProfileComponent() {
+export default function Profile() {
   const userRef = useRef(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const email = searchParams.get("email");
   const [userDet, setUser] = useState({
     username: "",
-    email: email || "",
+    email: "",
     bio: "",
     flag: false,
   });
-  // console.log(email);
+
   const handleChange = (e) => {
     setUser((prevState) => {
       return {
@@ -43,6 +41,21 @@ function ProfileComponent() {
   };
 
   useEffect(() => {
+    const getSessionUser = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      console.log(data);
+      if (data?.session?.user) {
+        setUser((prevState) => {
+          return {
+            ...prevState,
+            email: data.session.user.email,
+          };
+        });
+      } else {
+        console.log("Error in fetching session details");
+      }
+    };
+    getSessionUser();
     userRef.current.focus();
     document.title = "Profile Settings";
   }, []);
@@ -117,13 +130,5 @@ function ProfileComponent() {
         </form>
       </div>
     </div>
-  );
-}
-
-export default function Profile() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ProfileComponent />
-    </Suspense>
   );
 }

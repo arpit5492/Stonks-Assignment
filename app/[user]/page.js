@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function User() {
   const { user } = useParams();
+  const [guestFlag, setFlag] = useState("");
   // console.log(user);
   const [userData, setUser] = useState({});
   const fetchSinData = async () => {
@@ -22,11 +23,23 @@ export default function User() {
   };
 
   useEffect(() => {
+    const getSessionDet = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      console.log(data);
+      if (data?.session === null) {
+        setFlag(true);
+      } else {
+        console.log("Error in fetching Session details");
+      }
+    };
+    getSessionDet();
     document.title = `${user} - Twitch`;
     fetchSinData();
   }, []);
 
-  console.log(userData);
+  // console.log(guestFlag);
+
+  // console.log(userData);
   return (
     <div className="mt-6 h-screen mx-6 flex justify-start">
       <div
@@ -59,9 +72,17 @@ export default function User() {
         )}
         <div className="flex flex-col justify-end">
           <div className="flex justify-center items-center">
-            <button className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
-              <p>Follow</p>
-            </button>
+            {guestFlag ? (
+              <Link href={`/login`}>
+                <button className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
+                  <p>Follow</p>
+                </button>
+              </Link>
+            ) : (
+              <button className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
+                <p>Follow</p>
+              </button>
+            )}
             <button className="font-bold ml-4 rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
               <Link href={`/`}>Home</Link>
             </button>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import Link from "next/link";
 
 export default function HomeComp() {
   const [userData, setData] = useState([]);
@@ -32,32 +33,34 @@ export default function HomeComp() {
       <div className="mt-16 mx-10 flex justify-start flex-wrap">
         {userData.map((user) => {
           return (
-            <div
-              key={user.channel_id}
-              className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
-            >
-              <div className="w-96 h-72">
-                {user.is_streaming ? (
-                  <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-red-700 w-20 mx-2">
-                    LIVE
-                  </p>
-                ) : (
-                  <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-purple-800 w-20 mx-2">
-                    Offline
-                  </p>
-                )}
+            <Link href={`/${user.username}`}>
+              <div
+                key={user.channel_id}
+                className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
+              >
+                <div className="w-96 h-72">
+                  {user.is_streaming ? (
+                    <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-red-700 w-20 mx-2">
+                      LIVE
+                    </p>
+                  ) : (
+                    <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-purple-800 w-20 mx-2">
+                      Offline
+                    </p>
+                  )}
+                </div>
+                <hr className="bg-black" />
+                <div className="font-bold mt-2 mx-2 text-purple-800 cursor-pointer">
+                  {user.bio}
+                </div>
+                <div className="font-semibold ml-2 text-gray-700 my-2">
+                  {user.username}
+                </div>
+                <div className="font-bold ml-2 text-gray-700 my-2">
+                  {user.email}
+                </div>
               </div>
-              <hr className="bg-black" />
-              <div className="font-bold mt-2 mx-2 text-purple-800 cursor-pointer">
-                {user.bio}
-              </div>
-              <div className="font-semibold ml-2 text-gray-700 my-2">
-                {user.username}
-              </div>
-              <div className="font-bold ml-2 text-gray-700 my-2">
-                {user.email}
-              </div>
-            </div>
+            </Link>
           );
         })}
       </div>

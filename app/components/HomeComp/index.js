@@ -33,11 +33,8 @@ export default function HomeComp() {
       <div className="mt-16 mx-10 flex justify-start flex-wrap">
         {userData.map((user) => {
           return (
-            <Link href={`/${user.username}`}>
-              <div
-                key={user.channel_id}
-                className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
-              >
+            <Link key={user.channel_id} href={`/${user.username}`}>
+              <div className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80">
                 <div className="w-96 h-72">
                   {user.is_streaming ? (
                     <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-red-700 w-20 mx-2">

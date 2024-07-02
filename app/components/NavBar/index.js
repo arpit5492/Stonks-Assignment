@@ -89,7 +89,7 @@ export default function NavBar() {
           ) : (
             <></>
           )}
-          <Link href={`/profile/?email=${userDet.email}`}>
+          <Link href={`/profile`}>
             <div className="bg-purple-800 hover:text-white hover:bg-purple-900 py-2 px-3 rounded-lg mr-4">
               <button className="font-bold">Profile</button>
             </div>

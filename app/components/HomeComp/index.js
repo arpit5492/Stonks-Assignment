@@ -33,15 +33,18 @@ export default function HomeComp() {
       <div className="mt-16 mx-10 flex justify-start flex-wrap">
         {userData.map((user) => {
           return (
-            <Link key={user.channel_id} href={`/${user.username}`}>
-              <div className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80">
+            <div
+              key={user.channel_id}
+              className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
+            >
+              <Link key={user.channel_id} href={`/${user.username}`}>
                 <div className="w-96 h-72">
                   {user.is_streaming ? (
-                    <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-red-700 w-20 mx-2">
+                    <p className="p-2 font-bold rounded-lg text-white relative flex top-2 justify-center items-center bg-red-700 w-20 mx-2">
                       LIVE
                     </p>
                   ) : (
-                    <p className="p-2 font-bold rounded-lg text-white flex justify-center items-center mt-2 bg-purple-800 w-20 mx-2">
+                    <p className="p-2 font-bold rounded-lg text-white flex justify-center relative top-2 items-center bg-purple-800 w-20 mx-2">
                       Offline
                     </p>
                   )}
@@ -56,8 +59,8 @@ export default function HomeComp() {
                 <div className="font-bold ml-2 text-gray-700 my-2">
                   {user.email}
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>

@@ -54,6 +54,9 @@ export default function HomeComp() {
               <div className="font-semibold ml-2 text-gray-700 my-2">
                 {user.username}
               </div>
+              <div className="font-bold ml-2 text-gray-700 my-2">
+                {user.email}
+              </div>
             </div>
           );
         })}

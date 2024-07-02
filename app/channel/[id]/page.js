@@ -19,7 +19,7 @@ export default function ChannelComp() {
     if (data && data.length > 0) {
       const [obj] = data;
       setUser(obj);
-      setFlag(obj.is_streaming); // Correctly set the flag based on fetched data
+      setFlag(obj.is_streaming); // Correctly setting the flag based on fetched data
     } else {
       console.log("Error in fetching data");
     }
@@ -37,7 +37,7 @@ export default function ChannelComp() {
       setUser((prevState) => ({
         ...prevState,
         is_streaming: !flag,
-      })); // Update the user state as well
+      })); // Updating the user state as well so that the component re-renders with the new updated state
     }
   };
 

@@ -83,7 +83,7 @@ export default function NavBar() {
           {apiData?.is_notify ? (
             <Link href={`/channel/${apiData.channel_id}`}>
               <div className="bg-purple-800 hover:text-white hover:bg-purple-900 py-2 px-3 rounded-lg mr-4">
-                <button className="font-bold">Channel</button>
+                <button className="font-bold">{apiData.username}</button>
               </div>
             </Link>
           ) : (

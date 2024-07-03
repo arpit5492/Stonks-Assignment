@@ -46,12 +46,26 @@ export default function ChannelComp() {
         channel_id: id,
       });
       if (data) {
-        console.log(
-          "Email",
-          data.map((det) => {
-            return det.email;
+        const emails = data.map((det) => {
+          return det.email;
+        });
+        console.log(emails);
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email_ids: emails,
+            username: user.username,
+            userEmail: user.email,
           }),
-        );
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+        }
       } else if (error) {
         console.log("Error in fetching emails");
       }

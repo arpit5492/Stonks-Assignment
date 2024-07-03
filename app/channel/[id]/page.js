@@ -25,7 +25,7 @@ export default function ChannelComp() {
     }
   };
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
     const { error } = await supabase
       .from("channel")
       .upsert({ channel_id: id, is_streaming: !flag })
@@ -38,6 +38,37 @@ export default function ChannelComp() {
         ...prevState,
         is_streaming: !flag,
       })); // Updating the user state as well so that the component re-renders with the new updated state
+    }
+
+    console.log(e.target.innerText);
+    if (e.target.innerText === "Start Streaming") {
+      const { data, error } = await supabase.rpc("get_channel_emails", {
+        channel_id: id,
+      });
+      if (data) {
+        const emails = data.map((det) => {
+          return det.email;
+        });
+        console.log(emails);
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email_ids: emails,
+            username: user.username,
+            userEmail: user.email,
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+        }
+      } else if (error) {
+        console.log("Error in fetching emails");
+      }
     }
   };
 

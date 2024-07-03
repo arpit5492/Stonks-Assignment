@@ -6,3 +6,10 @@ create table channel (
   is_notify boolean,
   is_streaming boolean default false
 );
+
+create table follower (
+  id serial PRIMARY KEY,
+  channel_id int,
+  follower_id int REFERENCES channel(channel_id),
+  unique (channel_id, follower_id)
+);

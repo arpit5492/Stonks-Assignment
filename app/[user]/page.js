@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function User() {
   const { user } = useParams();
   const [guestFlag, setFlag] = useState("");
+  const [sessionEmail, setEmail] = useState("");
   // console.log(user);
   const [userData, setUser] = useState({});
   const fetchSinData = async () => {
@@ -28,6 +29,8 @@ export default function User() {
       // console.log(data);
       if (data?.session === null) {
         setFlag(true);
+      } else if (data?.session?.user) {
+        setEmail(data.session.user.email);
       } else {
         setFlag(false);
       }
@@ -39,7 +42,7 @@ export default function User() {
 
   // console.log(guestFlag);
 
-  // console.log(userData);
+  console.log(userData);
   return (
     <div className="mt-6 h-screen mx-6 flex justify-start">
       <div
@@ -78,11 +81,11 @@ export default function User() {
                   <p>Follow</p>
                 </button>
               </Link>
-            ) : (
+            ) : userData.email !== sessionEmail ? (
               <button className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
                 <p>Follow</p>
               </button>
-            )}
+            ) : null}
             <button className="font-bold ml-4 rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
               <Link href={`/`}>Home</Link>
             </button>

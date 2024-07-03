@@ -3,14 +3,14 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export default function User() {
   const { user } = useParams();
-  const [guestFlag, setFlag] = useState("");
+  const [guestFlag, setFlag] = useState(false);
   const [sessionEmail, setEmail] = useState("");
-  // console.log(user);
   const [userData, setUser] = useState({});
+
   const fetchSinData = async () => {
     const { data, error } = await supabase
       .from("channel")
@@ -20,29 +20,54 @@ export default function User() {
     if (data && data.length > 0) {
       const [obj] = data;
       setUser(obj);
+    } else if (error) {
+      console.error("Error fetching channel data:", error);
     }
   };
 
-  useEffect(() => {
-    const getSessionDet = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      // console.log(data);
-      if (data?.session === null) {
-        setFlag(true);
-      } else if (data?.session?.user) {
-        setEmail(data.session.user.email);
+  const handleClick = async () => {
+    const { data, error } = await supabase
+      .from("channel")
+      .select("channel_id")
+      .eq("email", sessionEmail);
+
+    if (data && data.length > 0) {
+      const [obj] = data;
+      const sessionChannelId = obj.channel_id;
+
+      const { insertError } = await supabase.from("follower").insert({
+        channel_id: userData.channel_id,
+        follower_id: sessionChannelId,
+      });
+
+      if (!insertError) {
+        alert("Yipee!! You are now following this channel!!");
       } else {
-        setFlag(false);
+        alert("Cannot insert follower");
       }
-    };
+    } else if (error) {
+      console.log("Error in fetching channel_id");
+    }
+  };
+
+  const getSessionDet = useCallback(async () => {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (data?.session === null) {
+      setFlag(true);
+    } else if (data?.session?.user) {
+      setEmail(data.session.user.email);
+    } else {
+      setFlag(false);
+    }
+  }, []);
+
+  useEffect(() => {
     getSessionDet();
     document.title = `${user} - Twitch`;
     fetchSinData();
   }, []);
 
-  // console.log(guestFlag);
-
-  console.log(userData);
   return (
     <div className="mt-6 h-screen mx-6 flex justify-start">
       <div
@@ -82,7 +107,10 @@ export default function User() {
                 </button>
               </Link>
             ) : userData.email !== sessionEmail ? (
-              <button className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white">
+              <button
+                onClick={handleClick}
+                className="font-bold rounded-lg p-2 bg-purple-800 hover:bg-purple-900 hover:text-white"
+              >
                 <p>Follow</p>
               </button>
             ) : null}

@@ -19,7 +19,7 @@ export default function ChannelComp() {
     if (data && data.length > 0) {
       const [obj] = data;
       setUser(obj);
-      setFlag(obj.is_streaming); // Correctly setting the flag based on fetched data
+      setFlag(obj.is_streaming);
     } else {
       console.log("Error in fetching data");
     }

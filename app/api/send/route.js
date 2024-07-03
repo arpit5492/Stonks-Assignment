@@ -10,7 +10,7 @@ export async function POST(req, res) {
   try {
     const response = await resend.emails.send({
       from: `${username} <onboarding@resend.dev>`,
-      to: ["arpitmallick99@gmail.com"],
+      to: ["arpitlm1999@gmail.com"],
       subject: "Join My Stream",
       html: `<div>Welcome to ${username}'s channel</div>`,
     });

@@ -120,7 +120,16 @@ export default function User() {
           </div>
         </div>
       </div>
-      <div className="h-fit rounded-lg p-2 font-bold shadow-lg">Chat Box</div>
+      <div
+        style={{ height: "580px", width: "400px" }}
+        className="rounded-lg p-2 font-bold shadow-lg"
+      >
+        <div
+          style={{ height: "500px", width: "384px" }}
+          className="bg-gray-200"
+        ></div>
+        <div></div>
+      </div>
     </div>
   );
 }

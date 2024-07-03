@@ -13,3 +13,10 @@ create table follower (
   follower_id int REFERENCES channel(channel_id),
   unique (channel_id, follower_id)
 );
+
+create table chat (
+  id serial PRIMARY KEY,
+  channel_id int,
+  user_id int REFERENCES channel(channel_id),
+  comments text
+);

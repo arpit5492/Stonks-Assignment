@@ -32,7 +32,7 @@ export default function ChannelComp() {
       .select();
 
     if (!error) {
-      console.log("Data updated successfully");
+      // console.log("Data updated successfully");
       setFlag(!flag);
       setUser((prevState) => ({
         ...prevState,
@@ -40,7 +40,7 @@ export default function ChannelComp() {
       })); // Updating the user state as well so that the component re-renders with the new updated state
     }
 
-    console.log(e.target.innerText);
+    // console.log(e.target.innerText);
     if (e.target.innerText === "Start Streaming") {
       const { data, error } = await supabase.rpc("get_channel_emails", {
         channel_id: id,

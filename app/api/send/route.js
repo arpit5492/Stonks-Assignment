@@ -1,22 +1,25 @@
-// import EmailTemplate from "@/app/components/EmailTemplate";
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import EmailTemplate from "@/app/components/EmailTemplate";
 
 export async function POST(req, res) {
   const { email_ids, username, userEmail } = await req.json();
   console.log(email_ids, username, userEmail);
+  // const dummy_emails = ["", ""];
 
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
-    const response = await resend.emails.send({
-      from: `${username} <onboarding@resend.dev>`,
-      to: ["arpitlm1999@gmail.com"],
-      subject: "Join My Stream",
-      html: `<div>Welcome to ${username}'s channel</div>`,
+    const emailPromises = email_ids.map((email) => {
+      resend.emails.send({
+        from: `${username} <onboarding@resend.dev>`,
+        to: email,
+        subject: "I am Live!! Join My Stream Now",
+        react: <EmailTemplate userName={username} />,
+      });
     });
 
+    const response = await Promise.all(emailPromises);
     if (response) {
-      console.log(response);
       return NextResponse.json({ message: "Email sent successfully!" });
     }
   } catch (err) {

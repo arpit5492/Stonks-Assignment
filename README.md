@@ -9,5 +9,6 @@
 
 ## Database Schema
 
-![db-schema](https://github.com/arpit5492/Stonks-Assignment/assets/48523103/2908612b-da47-4dc1-a887-52abf237e4c4)
+[db-schema.pdf](https://github.com/user-attachments/files/16095725/db-schema.pdf)
+
 

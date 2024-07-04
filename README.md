@@ -80,7 +80,7 @@ cd Stonks-Assignment/db-schemas/init.sql
 - Connected users (eddy)
 
   - Eddy connect with his google account --> **Done**
-  - Eddy need to complete his profile by setting his username and notification preferences --> **Done, Here make sure to tick the checkbox, else you won't be able to start streaming**
+  - Eddy need to complete his profile by setting his username and notification preferences --> **Done, Here make sure to tick the checkbox, else you won't be able to start streaming.**
   - Once connected and profile completed
     - eddy goes to his channel and start streaming (no need to do encoding stuff - just put a button that trigger a boolean and integrate an iframe of this video https://www.youtube.com/watch?v=jfKfPfyJRdk when the boolean is true for frontend) --> **Done, You can also see on the home page, if the channel is offline or live.**
 

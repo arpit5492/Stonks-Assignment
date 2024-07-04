@@ -13,6 +13,8 @@ export default function User() {
   const [comm, setComm] = useState({
     comments: "",
   });
+  const [chatData, setChatData] = useState([]);
+  const [msgFlag, setMsgFlag] = useState(false);
 
   const fetchSinData = async () => {
     const { data, error } = await supabase
@@ -85,7 +87,7 @@ export default function User() {
       const [obj] = data;
       const sessionUsername = obj.username;
 
-      console.log(sessionUsername);
+      // console.log(sessionUsername);
 
       const { error: insertError } = await supabase.from("chat").insert({
         channel_id: userData.channel_id,
@@ -102,6 +104,8 @@ export default function User() {
       console.log("Error in fetching session username");
     }
 
+    setMsgFlag(!msgFlag);
+
     setComm((prevState) => {
       return {
         ...prevState,
@@ -110,14 +114,40 @@ export default function User() {
     });
   };
 
+  const fetchChatData = async () => {
+    const { data, error } = await supabase
+      .from("chat")
+      .select("*")
+      .eq("channel_id", userData.channel_id);
+
+    if (data && data.length > 0) {
+      setChatData(data);
+    } else if (error) {
+      console.log("Error in fetching chat data");
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchChatData();
+  // }, []);
+
   useEffect(() => {
     getSessionDet();
     document.title = `${user} - Twitch`;
     fetchSinData();
   }, []);
 
+  useEffect(() => {
+    if (userData.channel_id) {
+      fetchChatData();
+    }
+  }, [userData, msgFlag]);
+
+  console.log(chatData);
+
   return (
     <div className="mt-6 h-screen mx-6 flex justify-start">
+      {/* {JSON.stringify(chatData)} */}
       <div
         style={{ height: "580px", width: "920px" }}
         className="mx-6 rounded-lg shadow-xl flex flex-col justify-between p-3"
@@ -174,8 +204,25 @@ export default function User() {
       >
         <div
           style={{ height: "500px", width: "384px" }}
-          className="bg-gray-200"
-        ></div>
+          className="bg-gray-200 px-2 py-4 flex items-end"
+        >
+          <div className="">
+            {chatData && chatData.length > 0
+              ? chatData.map((sinChat) => {
+                  return (
+                    <div key={sinChat.id} className="flex mt-2">
+                      <div className="font-bold text-purple-800">
+                        <p>{sinChat.username}:&nbsp;&nbsp;</p>
+                      </div>
+                      <div className="text-left">
+                        <p>{sinChat.comments}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </div>
         {guestFlag ? (
           <Link href={`/login`}>
             <div

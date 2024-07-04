@@ -9,4 +9,7 @@
 
 ## Database Schema
 
-[![db-schema](https://github.com/arpit5492/Stonks-Assignment/assets/48523103/ad531656-7827-4af3-9df6-a6c13fba081c)](https://dbdiagram.io/d/66865f299939893dae06cee7)
+<a href="https://dbdiagram.io/d/66865f299939893dae06cee7" target="_blank">
+    <img src="https://github.com/arpit5492/Stonks-Assignment/assets/48523103/ad531656-7827-4af3-9df6-a6c13fba081c" alt="db-schema">
+</a>
+<!-- [![db-schema](https://github.com/arpit5492/Stonks-Assignment/assets/48523103/ad531656-7827-4af3-9df6-a6c13fba081c)](https://dbdiagram.io/d/66865f299939893dae06cee7) -->

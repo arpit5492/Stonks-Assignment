@@ -122,13 +122,48 @@ export default function User() {
       </div>
       <div
         style={{ height: "580px", width: "400px" }}
-        className="rounded-lg p-2 font-bold shadow-lg"
+        className="rounded-lg p-2 shadow-lg"
       >
         <div
           style={{ height: "500px", width: "384px" }}
           className="bg-gray-200"
         ></div>
-        <div></div>
+        {guestFlag ? (
+          <Link href={`/login`}>
+            <div
+              style={{ height: "40px", width: "384px" }}
+              className="mt-4 flex justify-center items-center cursor-pointer hover:bg-purple-900 hover:text-white bg-purple-800 rounded-lg"
+            >
+              <p className="font-bold">Log In to start chatting</p>
+            </div>
+          </Link>
+        ) : userData.is_streaming ? (
+          <div className="mt-4 flex justify-evenly">
+            <input
+              style={{ height: "40px", width: "330px" }}
+              type="text"
+              placeholder="Send Message"
+              className="w-full p-2 bg-gray-200 rounded-lg"
+            />
+            <div
+              style={{ height: "40px", width: "40px" }}
+              className="bg-gray-200 flex justify-center items-center rounded-lg cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.8em"
+                height="1.8em"
+                viewBox="0 0 24 24"
+                className="text-purple-800"
+              >
+                <path
+                  fill="currentColor"
+                  d="m4.497 20.835l16.51-7.363c1.324-.59 1.324-2.354 0-2.944L4.497 3.164c-1.495-.667-3.047.814-2.306 2.202l3.152 5.904c.245.459.245 1 0 1.458l-3.152 5.904c-.74 1.388.81 2.87 2.306 2.202"
+                />
+              </svg>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

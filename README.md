@@ -88,3 +88,8 @@ cd Stonks-Assignment/db-schemas/init.sql
   - Nico follow eddy --> Done
   - If eddy start a streaming, Nico receive a push notification or an email if he’s not connected to the website. --> Done. I have written the logic for this, but there some updations on Resend which made it difficult to send emails to the channel's followers
   - Nico can go on Eddy’s stream and start chatting (basic) --> Done. I have implemented an unidirectional way of sending messages i.e after every response, the connection is automatically closed. I haven't got time to implement bi-directional way of sending messages i.e using websockets.
+
+**Bonus**
+
+- i18n integration:- I don't know how can I implement this
+- Emojis linked to channel:- I haven't got time to implement this, but the idea behind this could be adding the emojis to the channel table while creating the profile for that channel, then joining the follower and the channel table where channel.channel_id = "the id of the channel". I will try implementing in this way.

@@ -67,7 +67,7 @@ cd Stonks-Assignment/db-schemas/init.sql
 
 9. **Creating a .env.local file to store the environment variables**
 
-- I have provided an example file named `dotenv.local.example`, where the format of providing the environment variables are given. Provide the enironment variables inside the .env.local file, then run the application
+- I have provided an example file named `dotenv.local.example`, where the format of providing the environment variables are given. Provide the enironment variables inside the .env.local file like the example file, then run the application
 
 ### Stonks Deploy Github
 

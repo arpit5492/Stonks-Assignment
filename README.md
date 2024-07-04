@@ -65,6 +65,10 @@ cd Stonks-Assignment/db-schemas/init.sql
 
 - Open your browser and visit `http://localhost:3000` to view the application
 
+9. **Creating a .env.local file to store the environment variables**
+
+- I have provided an example file named `dotenv.local.example`, where the format of providing the environment variables are given. Provide the enironment variables inside the .env.local file, then run the application
+
 ### Stonks Deploy Github
 
 - Link:- https://github.com/arpit5492/stonks-deploy

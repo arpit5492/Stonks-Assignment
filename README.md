@@ -49,7 +49,7 @@ npm run dev
 npm run build
 ```
 
-6. **To run the application after build is executed**
+6. **To run the application after build is successfully completed**
 
 ```
 npm start

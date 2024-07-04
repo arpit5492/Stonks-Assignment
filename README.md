@@ -64,3 +64,7 @@ cd Stonks-Assignment/db-schemas/init.sql
 8. **Access the application**
 
 - Open your browser and visit `http://localhost:3000` to view the application
+
+## Stonks Deploy Github
+
+- Link:- https://github.com/arpit5492/stonks-deploy

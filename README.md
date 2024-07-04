@@ -1,6 +1,6 @@
-### Stonks Assignment
+## Stonks Assignment
 
-#### Technologies used
+### Technologies used
 
 - Frontend: NextJS
 - Backend: Supabase
@@ -19,8 +19,48 @@
 
 ## Run locally
 
-**Clone the repository**
+1. **Clone the repository**
 
 ```
 git clone https://github.com/arpit5492/Stonks-Assignment.git
 ```
+
+2. **Navigate to the application directory**
+
+```
+cd Stonks-Assignment/
+```
+
+3. **\*Install all the dependencies**
+
+```
+npm install
+```
+
+4. **To start the development server**
+
+```
+npm run dev
+```
+
+5. **To start the production server**
+
+```
+npm run build
+```
+
+6. **To run the application after build is executed**
+
+```
+npm start
+```
+
+7. **To view the database schema queries**
+
+```
+cd Stonks-Assignment/db-schemas/init.sql
+```
+
+8. **Access the application**
+
+- Open your browser and visit `http://localhost:3000` to view the application

@@ -10,6 +10,9 @@ export default function User() {
   const [guestFlag, setFlag] = useState(false);
   const [sessionEmail, setEmail] = useState("");
   const [userData, setUser] = useState({});
+  const [comm, setComm] = useState({
+    comments: "",
+  });
 
   const fetchSinData = async () => {
     const { data, error } = await supabase
@@ -61,6 +64,51 @@ export default function User() {
       setFlag(false);
     }
   }, []);
+
+  const handleChange = (e) => {
+    setComm((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleSend = async () => {
+    // console.log(comm.comments);
+    const { data, error } = await supabase
+      .from("channel")
+      .select("username")
+      .eq("email", sessionEmail);
+
+    if (data && data.length > 0) {
+      const [obj] = data;
+      const sessionUsername = obj.username;
+
+      console.log(sessionUsername);
+
+      const { error: insertError } = await supabase.from("chat").insert({
+        channel_id: userData.channel_id,
+        username: sessionUsername,
+        comments: comm.comments,
+      });
+
+      if (!insertError) {
+        console.log("Data inserted inside chat table");
+      } else {
+        console.log("Error in inserting data");
+      }
+    } else if (error) {
+      console.log("Error in fetching session username");
+    }
+
+    setComm((prevState) => {
+      return {
+        ...prevState,
+        comments: "",
+      };
+    });
+  };
 
   useEffect(() => {
     getSessionDet();
@@ -140,12 +188,16 @@ export default function User() {
         ) : userData.is_streaming ? (
           <div className="mt-4 flex justify-evenly">
             <input
+              onChange={handleChange}
               style={{ height: "40px", width: "330px" }}
               type="text"
+              name="comments"
+              value={comm.comments}
               placeholder="Send Message"
               className="w-full p-2 bg-gray-200 rounded-lg"
             />
             <div
+              onClick={handleSend}
               style={{ height: "40px", width: "40px" }}
               className="bg-gray-200 flex justify-center items-center rounded-lg cursor-pointer"
             >

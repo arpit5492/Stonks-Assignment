@@ -5,11 +5,11 @@ import EmailTemplate from "@/app/components/EmailTemplate";
 export async function POST(req, res) {
   const { email_ids, username, userEmail } = await req.json();
   console.log(email_ids, username, userEmail);
-  // const dummy_emails = ["", ""];
+  const dummy_emails = ["arpitmallick99@gmail.com", "arpitmallick99@gmail.com"];
 
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
-    const emailPromises = email_ids.map((email) => {
+    const emailPromises = dummy_emails.map((email) => {
       resend.emails.send({
         from: `${username} <onboarding@resend.dev>`,
         to: email,

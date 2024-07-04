@@ -17,6 +17,6 @@ create table follower (
 create table chat (
   id serial PRIMARY KEY,
   channel_id int,
-  user_id int REFERENCES channel(channel_id),
+  username varchar(100),
   comments text
 );

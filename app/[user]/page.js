@@ -10,6 +10,11 @@ export default function User() {
   const [guestFlag, setFlag] = useState(false);
   const [sessionEmail, setEmail] = useState("");
   const [userData, setUser] = useState({});
+  const [comm, setComm] = useState({
+    comments: "",
+  });
+  const [chatData, setChatData] = useState([]);
+  const [msgFlag, setMsgFlag] = useState(false);
 
   const fetchSinData = async () => {
     const { data, error } = await supabase
@@ -62,14 +67,87 @@ export default function User() {
     }
   }, []);
 
+  const handleChange = (e) => {
+    setComm((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleSend = async () => {
+    // console.log(comm.comments);
+    const { data, error } = await supabase
+      .from("channel")
+      .select("username")
+      .eq("email", sessionEmail);
+
+    if (data && data.length > 0) {
+      const [obj] = data;
+      const sessionUsername = obj.username;
+
+      // console.log(sessionUsername);
+
+      const { error: insertError } = await supabase.from("chat").insert({
+        channel_id: userData.channel_id,
+        username: sessionUsername,
+        comments: comm.comments,
+      });
+
+      if (!insertError) {
+        console.log("Data inserted inside chat table");
+      } else {
+        console.log("Error in inserting data");
+      }
+    } else if (error) {
+      console.log("Error in fetching session username");
+    }
+
+    setMsgFlag(!msgFlag);
+
+    setComm((prevState) => {
+      return {
+        ...prevState,
+        comments: "",
+      };
+    });
+  };
+
+  const fetchChatData = async () => {
+    const { data, error } = await supabase
+      .from("chat")
+      .select("*")
+      .eq("channel_id", userData.channel_id);
+
+    if (data && data.length > 0) {
+      setChatData(data);
+    } else if (error) {
+      console.log("Error in fetching chat data");
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchChatData();
+  // }, []);
+
   useEffect(() => {
     getSessionDet();
     document.title = `${user} - Twitch`;
     fetchSinData();
   }, []);
 
+  useEffect(() => {
+    if (userData.channel_id) {
+      fetchChatData();
+    }
+  }, [userData, msgFlag]);
+
+  console.log(chatData);
+
   return (
     <div className="mt-6 h-screen mx-6 flex justify-start">
+      {/* {JSON.stringify(chatData)} */}
       <div
         style={{ height: "580px", width: "920px" }}
         className="mx-6 rounded-lg shadow-xl flex flex-col justify-between p-3"
@@ -126,8 +204,25 @@ export default function User() {
       >
         <div
           style={{ height: "500px", width: "384px" }}
-          className="bg-gray-200"
-        ></div>
+          className="bg-gray-200 px-2 py-4 flex items-end"
+        >
+          <div className="">
+            {chatData && chatData.length > 0
+              ? chatData.map((sinChat) => {
+                  return (
+                    <div key={sinChat.id} className="flex mt-2">
+                      <div className="font-bold text-purple-800">
+                        <p>{sinChat.username}:&nbsp;&nbsp;</p>
+                      </div>
+                      <div className="text-left">
+                        <p>{sinChat.comments}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </div>
         {guestFlag ? (
           <Link href={`/login`}>
             <div
@@ -140,12 +235,16 @@ export default function User() {
         ) : userData.is_streaming ? (
           <div className="mt-4 flex justify-evenly">
             <input
+              onChange={handleChange}
               style={{ height: "40px", width: "330px" }}
               type="text"
+              name="comments"
+              value={comm.comments}
               placeholder="Send Message"
               className="w-full p-2 bg-gray-200 rounded-lg"
             />
             <div
+              onClick={handleSend}
               style={{ height: "40px", width: "40px" }}
               className="bg-gray-200 flex justify-center items-center rounded-lg cursor-pointer"
             >

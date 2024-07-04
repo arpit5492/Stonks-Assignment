@@ -35,7 +35,7 @@ export default function HomeComp() {
           return (
             <div
               key={user.channel_id}
-              className="shadow-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
+              className="shadow-lg rounded-lg bg-sky-300 mr-8 mb-8 hover:cursor-pointer hover:opacity-80"
             >
               <Link key={user.channel_id} href={`/${user.username}`}>
                 <div className="w-96 h-72">
@@ -68,7 +68,7 @@ export default function HomeComp() {
   } else {
     return (
       <div className="flex justify-center mt-16 text-purple-800 text-xl font-bold">
-        **No Channel to Display**
+        **No Channels to Display**
       </div>
     );
   }

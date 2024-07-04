@@ -1,6 +1,6 @@
 ### Stonks Assignment
 
-## Technologies used
+#### Technologies used
 
 - Frontend: NextJS
 - Backend: Supabase

@@ -95,7 +95,7 @@ cd Stonks-Assignment/db-schemas/init.sql
 
 **Bonus**
 
-- i18n integration:- **I don't know exactly how can I implement this.**
+- i18n integration:- **I am not sure exactly how can I implement this.**
 - Emojis linked to a channel:- **I haven't got time to implement this, but the idea behind this could be adding the emojis to the channel table while creating the profile for that channel, then joining the follower and the channel table where channel.channel_id = "the id of the channel". I will try implementing in this way.**
 
 #### Let me know if you are facing any issue in running the application

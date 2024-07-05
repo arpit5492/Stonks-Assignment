@@ -39,7 +39,7 @@ git clone https://github.com/arpit5492/Stonks-Assignment.git
 cd Stonks-Assignment/
 ```
 
-3. **\*Install all the dependencies**
+3. **Install all the dependencies**
 
 ```
 npm install

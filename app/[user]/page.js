@@ -104,7 +104,7 @@ export default function User() {
       console.log("Error in fetching session username");
     }
 
-    setMsgFlag(!msgFlag);
+    setMsgFlag(!msgFlag); // Created a state so that the component re-renders as soon as you click on the "send message" button
 
     setComm((prevState) => {
       return {
@@ -137,7 +137,7 @@ export default function User() {
     if (userData.channel_id) {
       fetchChatData();
     }
-  }, [userData, msgFlag]);
+  }, [userData, msgFlag]); // Kept the state here so that whenever there is a change in the state it will recall the API and Updated data will be shown in the chat box
 
   console.log(chatData);
 

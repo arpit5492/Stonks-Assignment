@@ -91,7 +91,7 @@ cd Stonks-Assignment/db-schemas/init.sql
 - Connected users (Nico)
   - Nico follow eddy --> **Done**
   - If eddy start a streaming, Nico receive a push notification or an email if he’s not connected to the website. --> **Done. I have written the logic for this, but there some updations on Resend which made it difficult to send emails to the channel's followers.**
-  - Nico can go on Eddy’s stream and start chatting (basic) --> **Done. I have implemented an unidirectional way of sending messages i.e after every response, the connection is automatically closed. I haven't got time to implement bi-directional way of sending messages i.e using websockets.**
+  - Nico can go on Eddy’s stream and start chatting (basic) --> **Done. I have implemented an unidirectional way of sending messages i.e after every response, the connection is automatically closed. I haven't got time to implement bi-directional way of sending messages i.e using websockets. But it's working fine. You can chat by going to any channel but you have to log in to start chatting.**
 
 **Bonus**
 

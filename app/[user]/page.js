@@ -127,10 +127,6 @@ export default function User() {
     }
   };
 
-  // useEffect(() => {
-  //   fetchChatData();
-  // }, []);
-
   useEffect(() => {
     getSessionDet();
     document.title = `${user} - Twitch`;

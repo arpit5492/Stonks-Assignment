@@ -8,6 +8,10 @@
 - Deployed this application on vercel:- https://stonks-deploy.vercel.app/
 - For sending emails I have used resend, although it's not working properly because of their new updation
 
+### Note:-
+
+- Please don't open the application on Mobile or I-pad as it is not fully responsive.
+
 ## My approach to start building the application
 
 - Whenever I work on a component, first I design the UI of that component, then I do the backend part.

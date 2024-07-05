@@ -8,7 +8,7 @@
 - Deployed this application on vercel:- https://stonks-deploy.vercel.app/
 - For sending emails I have used resend, although it's not working properly because of their new updation
 
-### Note:-
+### Note
 
 - Please don't open the application on Mobile or I-pad as it is not fully responsive.
 

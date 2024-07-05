@@ -5,7 +5,7 @@
 - Frontend: NextJS
 - CSS Framework: Tailwind CSS
 - Backend: Supabase
-- Deployed the application on vercel:- https://stonks-deploy.vercel.app/
+- Deployed this application on vercel:- https://stonks-deploy.vercel.app/
 - For sending emails I have used resend, although it's not working properly because of their new updation
 
 ## My approach to start building the application

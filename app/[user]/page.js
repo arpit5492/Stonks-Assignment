@@ -137,7 +137,7 @@ export default function User() {
     if (userData.channel_id) {
       fetchChatData();
     }
-  }, [userData, msgFlag]); // Kept the state here so that whenever there is a change in the state it will recall the API and Updated data will be shown in the chat box
+  }, [userData, msgFlag]); // Kept the state here in dependency array so that whenever there is a change in the state it will recall the API and updated data will be shown in the chat box
 
   console.log(chatData);
 

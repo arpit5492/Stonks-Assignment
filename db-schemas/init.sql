@@ -20,3 +20,16 @@ create table chat (
   username varchar(100),
   comments text
 );
+
+-- SQL Function to do inner join between channel and follower table to get the email ids of the followers of a channel
+
+create function get_channel_emails(channel_id integer)
+returns table(email text)
+as $$
+  select c.email
+  from channel as c
+  join follower as f on f.follower_id = c.channel_id
+  where f.channel_id = $1;
+  $$ language sql;
+
+

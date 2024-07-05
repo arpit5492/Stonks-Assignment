@@ -8,6 +8,13 @@
 - Deployed the application on vercel:- https://stonks-deploy.vercel.app/
 - For sending emails I have used resend, although it's not working properly because of their new updation
 
+## My approach to start building the application
+
+- Whenever I work on a component, first I design the UI of that component, then I do the backend part
+- For building this application, first I saw some YouTube Videos of "Supabase" ORM on how to write the SQL queries and then I started building the application.
+- Although I faced some issues while sending emails to the followers of a channel when the channel starts streaming because of a new policy in "resend" that you can only test emails with the registered users. That's why the email sending part will not work. I will try implementing this part using Nodemailer.
+- I also faced some issue while doing an inner join among channel and follower table in order to get the email ids of a channel's followers, so to overcome this I created a SQL function and wrote the join sql query inside it.
+
 ## Database Schema
 
 <a href="https://dbdiagram.io/d/66865f299939893dae06cee7" target="_blank">

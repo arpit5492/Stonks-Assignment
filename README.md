@@ -11,6 +11,7 @@
 ### Note
 
 - Please don't open the application on Mobile or I-pad as it is not fully responsive.
+- After logging in, please create a profile first by clicking on the "Profile" button in the NavBar
 
 ## My approach to start building the application
 

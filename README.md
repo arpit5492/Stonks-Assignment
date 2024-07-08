@@ -1,5 +1,3 @@
-## Stonks Assignment
-
 ### Technologies used
 
 - Frontend: NextJS

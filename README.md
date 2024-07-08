@@ -17,6 +17,9 @@ This is a Twitch clone that allows users to log in with their Google account, cr
 - Frontend: NextJS, ReactJS
 - CSS Framework: Tailwind CSS
 - Backend: Supabase
+- Database: PostGreSQL
+- Authentication: Google OAuth
+- Deployment: Vercel
 - Try this application:- https://twitchdeploy-arpit-mallicks-projects.vercel.app/
 
 ## Database Schema

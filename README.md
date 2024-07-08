@@ -86,8 +86,8 @@ cd Stonks-Assignment/db-schemas/init.sql
 
 9. **Creating a .env.local file to store the environment variables**
 
-- I have provided an example file named `dotenv.local.example`, where the format of providing the environment variables are given. Provide the enironment variables inside the .env.local file like the example file, then run the application
+- I have provided an example file named `dotenv.local.example`, where the format of providing the environment variables are given. Provide the enironment variables inside the .env.local file like the example file, then run the application.
 
-### Twitch-Clone Deploy Github
+## Contributing
 
-- Link:- https://github.com/arpit5492/twitch_deploy
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.

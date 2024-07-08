@@ -4,7 +4,7 @@
 
 This is a Twitch clone that allows users to log in with their Google account, create channels, start streaming, and interact with other users. The platform supports channel following and live chat functionality.
 
-### Features
+#### Features
 
 - **User Authentication:** Users can log in using their Google account.
 - **Channel Creation:** Authenticated users can create their own streaming channels.

@@ -1,10 +1,23 @@
+## Twitch Clone
+
+#### Overview
+
+This is a Twitch clone that allows users to log in with their Google account, create channels, start streaming, and interact with other users. The platform supports channel following and live chat functionality.
+
+### Features
+
+- **User Authentication:** Users can log in using their Google account.
+- **Channel Creation:** Authenticated users can create their own streaming channels.
+- **Live Streaming:** Users can start live streams on their channels.
+- **Follow Channels:** Users can follow their favorite channels.
+- **Live Chat:** Users can participate in live chats on channels.
+
 ### Technologies used
 
-- Frontend: NextJS
+- Frontend: NextJS, ReactJS
 - CSS Framework: Tailwind CSS
 - Backend: Supabase
 - Deployed this application on vercel:- https://twitchdeploy-arpit-mallicks-projects.vercel.app/
-- For sending emails I have used resend, although it's not working properly because of their new updation
 
 ## Database Schema
 

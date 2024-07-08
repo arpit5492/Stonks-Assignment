@@ -22,6 +22,10 @@ This is a Twitch clone that allows users to log in with their Google account, cr
 - Deployment: Vercel
 - Try this application:- https://twitchdeploy-arpit-mallicks-projects.vercel.app/
 
+## Screenshot
+
+![Screenshot 2024-07-08 at 12 16 38 PM](https://github.com/arpit5492/Twitch-Clone/assets/48523103/d1d03331-d10c-4a25-b360-9df968a0f3bf)
+
 ## Database Schema
 
 <a href="https://dbdiagram.io/d/66865f299939893dae06cee7" target="_blank">
